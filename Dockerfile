@@ -28,7 +28,7 @@ COPY --from=build /usr/local/bin/cryply-cli /usr/local/bin/cryply-cli
 
 RUN apk add --no-cache db-c++ boost boost-program_options openssl
 
-ADD ./contrib/entrypoint.sh /
+ADD ./entrypoint.sh /
 
 WORKDIR /data
 
