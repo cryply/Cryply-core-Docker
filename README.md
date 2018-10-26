@@ -1,7 +1,7 @@
 # Cryply-core-Docker
 Alpine based docker for Cryply core
 
-1. Install docker-compose
+1. Install docker and docker-compose
 2. run 'docker-compose up -d'
 3. check logs with 'docker-compose exec cryplyd tail -f /data/debug.log'
 
