@@ -4,13 +4,14 @@ FROM alpine:3.7 AS build
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
-LABEL maintainer "Balloo <flint@kraflink.com>"
+LABEL maintainer "Cryptomorpher <cryptomorpher@cryply.io>"
 
 WORKDIR /src
 
-RUN apk add --no-cache \
+RUN apk update \
+      && apk add --no-cache \
       alpine-sdk autoconf libtool automake boost-dev openssl-dev db-dev git \
-      git clone https://github.com/cryply/cryply-wallet.git cryply \
+      && git clone https://github.com/cryply/cryply-wallet.git cryply \
       && cd cryply            \
       && ./autogen.sh         \
       && ./configure          \
@@ -30,8 +31,13 @@ RUN apk add --no-cache db-c++ boost boost-program_options openssl
 
 ADD ./entrypoint.sh /
 
+VOLUME ["/data"]
+
 WORKDIR /data
 
-VOLUME ["/data"]
+ADD ./cryply.conf /data/cryply.conf
+
+EXPOSE 48886
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cryplyd"]

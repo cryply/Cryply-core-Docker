@@ -1,0 +1,10 @@
+version: '3'
+services:
+  cryplyd:
+    build: .
+    ports:
+      - 48886:48886
+    volumes:
+      - data:/data
+volumes:
+    data:

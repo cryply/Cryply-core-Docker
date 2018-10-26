@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 set -e
 
 if [ "$1" = 'cryplyd' ]; then
